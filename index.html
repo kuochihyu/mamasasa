@@ -1,0 +1,1490 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAMASASA｜福哇餅 — 台灣第一款穀物棉花糖餅</title>
+<meta name="description" content="MAMASASA 福哇餅，用燕麥粉、黃豆粉取代精緻餅乾，搭配厚切果乾，手工製作。黃豆芒果、抹茶草莓、燕麥無花果、松露椒鹽堅果四款口味。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  /* ── TOKENS ── */
+  :root {
+    --cream:        #FAF7F2;
+    --warm-white:   #FFFEF9;
+    --ink:          #1C1A17;
+    --ink-light:    #5A5750;
+    --ink-muted:    #9B9690;
+    --accent:       #C4956A;
+    --accent-light: #E8D5BC;
+    --accent-pale:  #F5EDE0;
+    --green:        #4A7C59;
+    --green-pale:   #EBF3EC;
+    --border:       rgba(28,26,23,0.10);
+    --shadow:       0 4px 32px rgba(28,26,23,0.08);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.8;
+    font-weight: 300;
+    font-size: 15px;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    background: rgba(250,247,242,0.94);
+    backdrop-filter: blur(16px);
+    border-bottom: 0.5px solid var(--border);
+    padding: 0 6vw;
+    height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 18px; font-weight: 500; letter-spacing: 0.18em;
+    color: var(--ink); text-decoration: none;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 2.2rem; align-items: center; }
+  .nav-links a {
+    font-size: 12.5px; letter-spacing: 0.1em; color: var(--ink-light);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-order {
+    background: var(--ink); color: var(--cream) !important;
+    padding: 9px 22px; border-radius: 2px;
+    font-size: 12px !important; letter-spacing: 0.12em;
+    transition: background 0.2s !important;
+  }
+  .nav-order:hover { background: var(--accent) !important; color: var(--cream) !important; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    padding: 140px 6vw 100px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5vw;
+    align-items: center;
+    position: relative; overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 80% 40%, rgba(196,149,106,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 1.4rem;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block;
+    width: 28px; height: 0.5px; background: var(--accent);
+  }
+  .hero-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: clamp(32px, 4.5vw, 62px);
+    font-weight: 300; line-height: 1.35;
+    color: var(--ink); margin-bottom: 1.6rem;
+  }
+  .hero-title strong { font-weight: 500; color: var(--accent); display: block; }
+  .hero-subtitle {
+    font-size: 15px; color: var(--ink-light);
+    max-width: 420px; margin-bottom: 2.8rem; line-height: 2;
+  }
+  .hero-subtitle em {
+    font-style: normal;
+    border-bottom: 1px solid var(--accent-light);
+    color: var(--ink);
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 12px;
+    background: var(--ink); color: var(--cream);
+    padding: 16px 36px; border-radius: 2px;
+    font-size: 12.5px; letter-spacing: 0.15em; text-transform: uppercase;
+    text-decoration: none; transition: all 0.3s; font-weight: 400;
+  }
+  .btn-primary:hover { background: var(--accent); transform: translateY(-2px); box-shadow: var(--shadow); }
+  .btn-primary .arrow { transition: transform 0.25s; }
+  .btn-primary:hover .arrow { transform: translateX(5px); }
+  .hero-tags { display: flex; gap: 8px; margin-top: 2rem; flex-wrap: wrap; }
+  .hero-tag {
+    font-size: 11px; letter-spacing: 0.1em;
+    padding: 5px 13px; border: 0.5px solid var(--border);
+    border-radius: 20px; color: var(--ink-muted);
+    background: rgba(255,255,255,0.7);
+  }
+  .hero-visual {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 14px;
+  }
+  .hero-card {
+    background: var(--warm-white);
+    border: 0.5px solid var(--border);
+    border-radius: 4px;
+    padding: 24px 20px;
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .hero-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+  .hero-card:first-child { grid-row: span 2; background: var(--accent-pale); }
+  .hero-card-label {
+    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--ink-muted); margin-bottom: 8px;
+  }
+  .hero-card-name {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 16px; font-weight: 400;
+    color: var(--ink); margin-bottom: 6px;
+  }
+  .hero-card-price { font-size: 12px; color: var(--accent); letter-spacing: 0.05em; }
+  .hero-card-tag {
+    display: inline-block; margin-top: 10px;
+    font-size: 10px; letter-spacing: 0.12em;
+    padding: 3px 10px; border-radius: 20px;
+    background: var(--green-pale); color: var(--green);
+  }
+
+  /* ── SECTION WRAPPER ── */
+  section { padding: 100px 6vw; }
+  .section-label {
+    font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--ink-muted); margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .section-label::after {
+    content: ''; display: block;
+    flex: 1; height: 0.5px; background: var(--border); max-width: 60px;
+  }
+  .section-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: clamp(22px, 3vw, 36px);
+    font-weight: 300; line-height: 1.4; margin-bottom: 1.2rem;
+  }
+  .section-body { font-size: 15px; color: var(--ink-light); line-height: 2; max-width: 560px; }
+
+  /* ── ABOUT ── */
+  #about { background: var(--warm-white); }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8vw;
+    align-items: start;
+  }
+  .about-stats {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+    margin-top: 2.5rem;
+  }
+  .stat-item {
+    padding: 20px 20px;
+    border: 0.5px solid var(--border);
+    background: var(--cream);
+  }
+  .stat-item:hover { background: var(--accent-pale); }
+  .stat-num {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 28px; font-weight: 300; color: var(--accent);
+    display: block; margin-bottom: 4px;
+  }
+  .stat-label { font-size: 11px; color: var(--ink-muted); letter-spacing: 0.1em; }
+  .about-pillars { display: flex; flex-direction: column; gap: 1.5rem; }
+  .pillar {
+    display: flex; gap: 1.2rem; align-items: flex-start;
+    padding-bottom: 1.5rem;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .pillar:last-child { border-bottom: none; padding-bottom: 0; }
+  .pillar-icon {
+    width: 40px; height: 40px; flex-shrink: 0;
+    background: var(--accent-pale);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+  }
+  .pillar-title { font-weight: 500; margin-bottom: 4px; font-size: 14px; }
+  .pillar-body { font-size: 13px; color: var(--ink-light); line-height: 1.8; }
+
+  /* ── PRODUCTS ── */
+  #products { background: var(--cream); }
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .product-card {
+    background: var(--warm-white);
+    border: 0.5px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: transform 0.25s, box-shadow 0.25s;
+    display: flex; flex-direction: column;
+  }
+  .product-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+  .product-thumb {
+    height: 220px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+    font-size: 60px;
+  }
+  /* 商品照片：有照片時填滿，沒有照片自動隱藏回 emoji */
+  .product-thumb img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center;
+    transition: transform 0.4s ease;
+    z-index: 1;
+  }
+  .product-card:hover .product-thumb img { transform: scale(1.04); }
+  /* emoji fallback（沒有照片時顯示） */
+  .product-thumb .thumb-emoji {
+    position: relative; z-index: 0;
+    line-height: 1;
+  }
+  .product-thumb::after {
+    content: ''; position: absolute;
+    bottom: 0; left: 0; right: 0; height: 45%;
+    background: linear-gradient(transparent, rgba(250,247,242,0.85));
+    pointer-events: none; z-index: 2;
+  }
+  .product-body { padding: 24px 22px; flex: 1; display: flex; flex-direction: column; }
+  .product-badge {
+    font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 4px 12px; border-radius: 20px; display: inline-block;
+    margin-bottom: 12px; align-self: flex-start;
+  }
+  .badge-gold    { background: var(--accent-pale); color: var(--accent); }
+  .badge-green   { background: var(--green-pale);  color: var(--green);  }
+  .badge-new     { background: #EBE8F5; color: #6554AF; }
+  .product-name {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 18px; font-weight: 400;
+    margin-bottom: 4px; color: var(--ink);
+  }
+  .product-tagline {
+    font-size: 12px; color: var(--accent);
+    letter-spacing: 0.08em; margin-bottom: 12px;
+  }
+  .product-desc {
+    font-size: 13px; color: var(--ink-light);
+    line-height: 1.85; margin-bottom: 16px; flex: 1;
+  }
+  .product-specs { margin-top: auto; }
+  .spec-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 8px 0;
+    border-top: 0.5px solid var(--border);
+    font-size: 12.5px;
+  }
+  .spec-type { color: var(--ink-muted); }
+  .spec-price { font-weight: 500; color: var(--ink); }
+
+  /* ── INGREDIENTS HIGHLIGHT ── */
+  #ingredients { background: var(--accent-pale); padding: 80px 6vw; }
+  .ingredients-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+    margin-top: 2.5rem;
+  }
+  .ingredient-item {
+    background: var(--warm-white);
+    padding: 28px 24px;
+    text-align: center;
+  }
+  .ingredient-icon { font-size: 32px; margin-bottom: 12px; display: block; }
+  .ingredient-name { font-weight: 500; font-size: 14px; margin-bottom: 6px; }
+  .ingredient-desc { font-size: 12px; color: var(--ink-muted); line-height: 1.7; }
+  .ingredient-compare {
+    margin-top: 2.5rem;
+    background: var(--warm-white);
+    border: 0.5px solid var(--border);
+    padding: 28px 32px;
+    border-radius: 4px;
+  }
+  .compare-title { font-size: 13px; color: var(--ink-muted); letter-spacing: 0.1em; margin-bottom: 16px; text-align: center; }
+  .compare-row {
+    display: grid; grid-template-columns: 1fr auto 1fr;
+    gap: 12px; align-items: center; padding: 10px 0;
+    border-bottom: 0.5px solid var(--border);
+    font-size: 13px;
+  }
+  .compare-row:last-child { border-bottom: none; }
+  .compare-us { color: var(--green); font-weight: 500; }
+  .compare-vs { color: var(--ink-muted); font-size: 11px; letter-spacing: 0.1em; text-align: center; }
+  .compare-them { color: var(--ink-muted); text-align: right; }
+
+  /* ── ORDER FLOW ── */
+  #order { background: var(--warm-white); }
+  .order-steps {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 2px; margin-top: 3rem;
+  }
+  .order-step {
+    background: var(--cream);
+    padding: 32px 28px;
+    position: relative;
+  }
+  .order-step:not(:last-child)::after {
+    content: '→';
+    position: absolute; top: 32px; right: -12px;
+    color: var(--accent-light); font-size: 20px;
+    z-index: 1;
+  }
+  .step-num {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 36px; font-weight: 300;
+    color: var(--accent-light); margin-bottom: 12px; display: block;
+  }
+  .step-title { font-weight: 500; font-size: 15px; margin-bottom: 8px; }
+  .step-body { font-size: 13px; color: var(--ink-light); line-height: 1.8; }
+  .order-note {
+    margin-top: 2rem;
+    padding: 20px 24px;
+    background: var(--accent-pale);
+    border-left: 3px solid var(--accent);
+    font-size: 13px; color: var(--ink-light); line-height: 1.9;
+  }
+  .order-note strong { color: var(--ink); }
+  .btn-order-big {
+    display: block; margin: 2.5rem auto 0;
+    width: fit-content;
+    background: var(--accent); color: var(--cream);
+    padding: 18px 56px; border-radius: 2px;
+    font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase;
+    text-decoration: none; transition: all 0.3s; font-weight: 400;
+    text-align: center;
+  }
+  .btn-order-big:hover { background: var(--ink); transform: translateY(-2px); box-shadow: var(--shadow); }
+
+  /* ── SHIPPING ── */
+  #shipping { background: var(--cream); }
+  .shipping-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  .shipping-item {
+    background: var(--warm-white);
+    border: 0.5px solid var(--border);
+    padding: 24px;
+    display: flex; gap: 16px; align-items: flex-start;
+  }
+  .shipping-icon { font-size: 24px; flex-shrink: 0; }
+  .shipping-title { font-weight: 500; font-size: 14px; margin-bottom: 6px; }
+  .shipping-desc { font-size: 13px; color: var(--ink-light); line-height: 1.7; }
+
+  /* ── FAQ ── */
+  #faq { background: var(--warm-white); }
+  .faq-list { margin-top: 2rem; display: flex; flex-direction: column; gap: 0; }
+  .faq-item { border-bottom: 0.5px solid var(--border); }
+  .faq-q {
+    padding: 18px 0; cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+    font-weight: 500; font-size: 14px;
+    list-style: none;
+  }
+  .faq-q::marker, .faq-q::-webkit-details-marker { display: none; }
+  .faq-icon { font-size: 18px; color: var(--accent); transition: transform 0.2s; }
+  details[open] .faq-icon { transform: rotate(45deg); }
+  .faq-a {
+    padding: 0 0 18px 0;
+    font-size: 13px; color: var(--ink-light); line-height: 1.9;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    padding: 60px 6vw 40px;
+    color: rgba(250,247,242,0.6);
+  }
+  .footer-top {
+    display: grid; grid-template-columns: 2fr 1fr 1fr;
+    gap: 4vw; margin-bottom: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 0.5px solid rgba(250,247,242,0.12);
+  }
+  .footer-brand {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 20px; font-weight: 400; letter-spacing: 0.15em;
+    color: #FAF7F2; margin-bottom: 12px;
+  }
+  .footer-tagline { font-size: 12px; margin-bottom: 1.5rem; }
+  .footer-social { display: flex; gap: 14px; }
+  .social-link {
+    display: flex; align-items: center; gap: 8px;
+    color: rgba(250,247,242,0.6); text-decoration: none;
+    font-size: 12px; letter-spacing: 0.08em;
+    padding: 8px 16px;
+    border: 0.5px solid rgba(250,247,242,0.2);
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
+  .social-link:hover { color: #FAF7F2; border-color: rgba(250,247,242,0.5); background: rgba(250,247,242,0.06); }
+  .footer-col-title {
+    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: rgba(250,247,242,0.4); margin-bottom: 16px;
+  }
+  .footer-links { display: flex; flex-direction: column; gap: 10px; }
+  .footer-links a {
+    color: rgba(250,247,242,0.6); text-decoration: none;
+    font-size: 13px; transition: color 0.2s;
+  }
+  .footer-links a:hover { color: #FAF7F2; }
+  .footer-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 11.5px;
+  }
+  .footer-bottom span { color: rgba(250,247,242,0.4); }
+
+  /* ── 購物車按鈕（NAV）── */
+  .cart-icon-btn {
+    position: relative; background: none; border: none; cursor: pointer;
+    padding: 8px; color: var(--ink); display: flex; align-items: center;
+    margin-left: 4px;
+  }
+  .cart-icon-btn svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 1.5; }
+  .cart-badge {
+    position: absolute; top: 2px; right: 0;
+    background: var(--accent); color: #fff;
+    font-size: 9px; font-weight: 700;
+    min-width: 15px; height: 15px; border-radius: 20px; padding: 0 3px;
+    display: none; align-items: center; justify-content: center; line-height: 1;
+  }
+  .cart-badge.show { display: flex; }
+
+  /* ── 購物車遮罩 ── */
+  .cart-overlay {
+    position: fixed; inset: 0; background: rgba(28,26,23,0.45);
+    z-index: 300; opacity: 0; pointer-events: none; transition: opacity 0.3s;
+  }
+  .cart-overlay.open { opacity: 1; pointer-events: all; }
+
+  /* ── 購物車抽屜 ── */
+  .cart-drawer {
+    position: fixed; top: 0; right: 0; bottom: 0;
+    width: min(440px, 100vw);
+    background: var(--cream); z-index: 400;
+    display: flex; flex-direction: column;
+    transform: translateX(100%);
+    transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+    box-shadow: -4px 0 40px rgba(28,26,23,0.15);
+  }
+  .cart-drawer.open { transform: translateX(0); }
+  .cart-drawer-hd {
+    padding: 22px 24px; border-bottom: 0.5px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;
+  }
+  .cart-drawer-title { font-family: 'Noto Serif TC',serif; font-size: 16px; font-weight: 400; }
+  .cart-close { background: none; border: none; cursor: pointer; color: var(--ink-muted); font-size: 22px; line-height: 1; padding: 0; }
+  .cart-view, .checkout-view { display: flex; flex-direction: column; flex: 1; overflow: hidden; }
+  .cart-body { flex: 1; overflow-y: auto; padding: 16px 24px; }
+  .cart-empty { text-align: center; padding: 60px 20px; color: var(--ink-muted); font-size: 14px; }
+  .cart-empty-icon { font-size: 40px; margin-bottom: 12px; display: block; }
+  .cart-item {
+    display: flex; gap: 14px; padding: 16px 0;
+    border-bottom: 0.5px solid var(--border); align-items: flex-start;
+  }
+  .cart-item-emoji { font-size: 30px; flex-shrink: 0; line-height: 1; margin-top: 2px; }
+  .cart-item-info { flex: 1; }
+  .cart-item-name { font-size: 14px; font-weight: 500; margin-bottom: 3px; }
+  .cart-item-pkg  { font-size: 12px; color: var(--ink-muted); margin-bottom: 8px; }
+  .cart-item-ctrl { display: flex; align-items: center; gap: 10px; }
+  .qty-btn {
+    width: 28px; height: 28px; border: 0.5px solid var(--border);
+    background: var(--warm-white); cursor: pointer; border-radius: 2px;
+    font-size: 17px; display: flex; align-items: center; justify-content: center;
+    color: var(--ink); transition: background 0.15s; padding: 0;
+  }
+  .qty-btn:hover { background: var(--accent-pale); }
+  .qty-num { font-size: 14px; min-width: 22px; text-align: center; }
+  .cart-item-right { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+  .cart-item-price { font-size: 14px; color: var(--accent); white-space: nowrap; }
+  .cart-item-remove { background: none; border: none; cursor: pointer; color: var(--ink-muted); font-size: 20px; line-height: 1; padding: 0; }
+  .cart-discount-info {
+    background: var(--green-pale); color: var(--green);
+    font-size: 11.5px; padding: 8px 14px; border-radius: 2px;
+    text-align: center; margin: 12px 0; display: none;
+  }
+  .cart-discount-info.show { display: block; }
+  .cart-ft {
+    padding: 18px 24px; border-top: 0.5px solid var(--border);
+    background: var(--warm-white); flex-shrink: 0;
+  }
+  .cart-total-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+  .cart-total-lbl { font-size: 12px; color: var(--ink-muted); }
+  .cart-total-amt { font-size: 20px; font-weight: 500; color: var(--accent); }
+  .cart-total-orig { text-decoration: line-through; color: var(--ink-muted); font-size: 13px; display: block; text-align: right; }
+  .btn-checkout {
+    width: 100%; padding: 15px; background: var(--ink); color: var(--cream);
+    border: none; cursor: pointer; border-radius: 2px;
+    font-size: 12.5px; letter-spacing: 0.14em; transition: background 0.2s;
+  }
+  .btn-checkout:hover { background: var(--accent); }
+
+  /* ── 結帳表單 ── */
+  .checkout-view { padding: 20px 24px; overflow-y: auto; }
+  .co-title { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 18px; }
+  .co-order-summary {
+    background: var(--accent-pale); padding: 14px 16px; border-radius: 2px;
+    font-size: 12.5px; color: var(--ink); margin-bottom: 20px; line-height: 2;
+  }
+  .co-field { margin-bottom: 13px; }
+  .co-field label { display: block; font-size: 11.5px; color: var(--ink-muted); margin-bottom: 5px; letter-spacing: 0.06em; }
+  .co-field input, .co-field select, .co-field textarea {
+    width: 100%; padding: 10px 12px;
+    border: 0.5px solid var(--border); background: var(--cream); color: var(--ink);
+    font-family: inherit; font-size: 13px; border-radius: 2px; outline: none;
+    transition: border-color 0.2s;
+  }
+  .co-field input:focus, .co-field select:focus, .co-field textarea:focus { border-color: var(--accent); }
+  .co-field textarea { resize: none; height: 65px; }
+  .btn-submit-order {
+    width: 100%; padding: 15px; background: var(--accent); color: var(--cream);
+    border: none; cursor: pointer; border-radius: 2px;
+    font-size: 12.5px; letter-spacing: 0.14em; margin-top: 10px; transition: background 0.2s;
+  }
+  .btn-submit-order:hover { background: #b8865e; }
+  .btn-back { width: 100%; padding: 10px; background: none; color: var(--ink-muted); border: none; cursor: pointer; font-size: 12px; letter-spacing: 0.1em; margin-top: 4px; }
+
+  /* ── 商品卡包裝選擇器 ── */
+  .pkg-options { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
+  .pkg-opt {
+    flex: 1; min-width: 90px; padding: 9px 10px;
+    border: 0.5px solid var(--border); background: var(--cream);
+    cursor: pointer; border-radius: 2px; text-align: center; transition: all 0.15s;
+  }
+  .pkg-opt:hover { border-color: var(--accent-light); }
+  .pkg-opt.selected { border-color: var(--accent); background: var(--accent-pale); }
+  .pkg-opt-type  { font-size: 11px; color: var(--ink-muted); margin-bottom: 3px; }
+  .pkg-opt-price { font-size: 13px; font-weight: 500; color: var(--ink); }
+  .pkg-opt.selected .pkg-opt-price { color: var(--accent); }
+  .btn-add-cart {
+    width: 100%; padding: 12px; background: var(--ink); color: var(--cream);
+    border: none; cursor: pointer; border-radius: 2px;
+    font-size: 12px; letter-spacing: 0.12em; transition: background 0.25s;
+  }
+  .btn-add-cart:hover  { background: var(--accent); }
+  .btn-add-cart.added  { background: var(--green); }
+
+  /* ── 往下滾動提示箭頭 ── */
+  .scroll-hint {
+    display: none; /* 桌機隱藏 */
+  }
+  @media (max-width: 768px) {
+    .scroll-hint {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      margin-top: 2rem;
+      color: var(--ink-muted);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      animation: bounceY 1.8s ease-in-out infinite;
+    }
+    .scroll-hint svg { width: 18px; height: 18px; stroke: var(--accent); }
+    @keyframes bounceY {
+      0%, 100% { transform: translateY(0); opacity: 0.7; }
+      50%       { transform: translateY(6px); opacity: 1; }
+    }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    #hero {
+      grid-template-columns: 1fr;
+      padding: 120px 5vw 50px;
+      min-height: auto; /* 手機版不強制全螢幕高，讓用戶自然看到下方 */
+    }
+    .hero-visual { display: none; }
+    .about-grid, .ingredients-grid, .order-steps, .shipping-grid { grid-template-columns: 1fr; }
+    .order-step::after { display: none; }
+    .footer-top { grid-template-columns: 1fr; }
+    nav { padding: 0 5vw; }
+    .nav-links { gap: 1.2rem; }
+    .nav-links a:not(.nav-order) { display: none; }
+    section { padding: 70px 5vw; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav>
+  <a href="#hero" class="nav-logo">MAMA<span>SASA</span></a>
+  <div class="nav-links">
+    <a href="#about">品牌故事</a>
+    <a href="#products">產品</a>
+    <a href="#ingredients">成分</a>
+    <a href="#order">訂購</a>
+    <button class="cart-icon-btn" onclick="openCart()" aria-label="購物車">
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <path d="M16 10a4 4 0 0 1-8 0"/>
+      </svg>
+      <span class="cart-badge" id="cartBadge">0</span>
+    </button>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Hand-crafted in Taipei</p>
+    <h1 class="hero-title">
+      不只是雪Q餅<br>
+      <strong>福哇餅</strong>
+    </h1>
+    <p class="hero-subtitle">
+      用<em>燕麥粉、黃豆粉</em>取代部分精緻餅乾，<br>
+      搭配<em>整片厚切果乾</em>與手工熬製棉花糖。<br>
+      更少精緻澱粉，更多穀物纖維，<br>
+      一樣的蓬鬆 Q 彈。
+    </p>
+    <a href="#products" class="btn-primary">
+      選購口味 <span class="arrow">→</span>
+    </a>
+    <div class="hero-tags">
+      <span class="hero-tag">手工製作</span>
+      <span class="hero-tag">燕麥粉 × 黃豆粉</span>
+      <span class="hero-tag">厚切果乾</span>
+      <span class="hero-tag">5款口味</span>
+      <span class="hero-tag">台北工作室</span>
+    </div>
+    <!-- 手機版往下滑提示 -->
+    <div class="scroll-hint">
+      <span>往下滑看更多</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9"/>
+      </svg>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-card">
+      <div class="hero-card-label">本週話題</div>
+      <div class="hero-card-name">松露椒鹽堅果</div>
+      <div class="hero-card-price">NT$ 240 起</div>
+      <span class="hero-card-tag">New Flavor</span>
+      <p style="font-size:12px;color:var(--ink-muted);margin-top:14px;line-height:1.8;">
+        鹹甜的意外組合<br>吃第一口愣住<br>第二口停不下來
+      </p>
+    </div>
+    <div class="hero-card">
+      <div class="hero-card-label">人氣口味</div>
+      <div class="hero-card-name">黃豆芒果</div>
+      <div class="hero-card-price">NT$ 220 起</div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-card-label">療癒首選</div>
+      <div class="hero-card-name">抹茶草莓</div>
+      <div class="hero-card-price">NT$ 240 起</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ABOUT ══ -->
+<section id="about">
+  <div class="about-grid">
+    <div>
+      <p class="section-label">About MAMASASA</p>
+      <h2 class="section-title">甜點，也可以<br>誠實一點</h2>
+      <p class="section-body">
+        MAMASASA 是台北的一間手作甜點工作室。<br><br>
+        我們的福哇餅（Fuwa-Bing）從基底開始重新思考——
+        用燕麥粉、黃豆粉、紅豆薏仁粉取代部分精緻餅乾，
+        再與手工熬製的棉花糖和整片厚切果乾融合。<br><br>
+        「Fuwa」是日文ふわふわ的音譯，形容蓬鬆、輕盈的口感。
+        我們取中文諧音「福哇」，讓每一口都帶著一點福氣。<br><br>
+        這不是謊稱「健康零食」的行銷話術。這是一款
+        你知道自己在吃什麼、吃完不後悔的甜點。
+      </p>
+      <div class="about-stats">
+        <div class="stat-item">
+          <span class="stat-num">3+</span>
+          <span class="stat-label">種穀物粉基底</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">4</span>
+          <span class="stat-label">款獨家口味</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">60g</span>
+          <span class="stat-label">厚切芒果乾（每份）</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">手工</span>
+          <span class="stat-label">每批限量製作</span>
+        </div>
+      </div>
+    </div>
+    <div class="about-pillars">
+      <div class="pillar">
+        <div class="pillar-icon">🌾</div>
+        <div>
+          <div class="pillar-title">澱粉革命</div>
+          <div class="pillar-body">我們混入燕麥粉與紅豆薏仁粉，降低精緻澱粉比例，增加膳食纖維。這不是噱頭，是配方設計的起點。</div>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">🥭</div>
+        <div>
+          <div class="pillar-title">整片厚切，不是碎末</div>
+          <div class="pillar-body">市售雪Q餅常見碎片果乾。我們使用整片厚切果乾，每口都是真實的果感，不是香精填充。</div>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">☁️</div>
+        <div>
+          <div class="pillar-title">手工熬製棉花糖</div>
+          <div class="pillar-body">棉花糖的熬製溫度決定整塊餅的口感。我們每批手工控溫，確保蓬鬆但不黏牙的獨特口感。</div>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">📦</div>
+        <div>
+          <div class="pillar-title">限量手作，預約制</div>
+          <div class="pillar-body">不量產、不囤貨。每批製作後 5-7 個工作天內出貨，確保新鮮度。節慶禮盒請提前 14 天預訂。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PRODUCTS ══ -->
+<section id="products">
+  <p class="section-label">Products</p>
+  <h2 class="section-title">選一款，<br>陪你今天的時光</h2>
+  <div class="products-grid">
+
+    <!-- 黃豆芒果 -->
+    <div class="product-card">
+      <div class="product-thumb" style="background: linear-gradient(135deg, #FFF3E0, #FFE0B2);">
+        <img src="image/product-黃豆芒果.jpg"
+             alt="MAMASASA 黃豆芒果 福哇餅"
+             loading="lazy"
+             onerror="this.style.display='none'">
+        <span class="thumb-emoji">🥭</span>
+      </div>
+      <div class="product-body">
+        <span class="product-badge badge-gold">人氣首選</span>
+        <div class="product-name">黃豆芒果</div>
+        <div class="product-tagline">古法豆香 × 厚切芒果</div>
+        <div class="product-desc">
+          燕麥粉底，加入古法炒製黃豆粉。
+          豆香不搶戲，讓厚切芒果乾的酸甜更突出。
+          每口先是穀物溫潤，然後是芒果果香，
+          最後是棉花糖的輕盈收尾。
+        </div>
+        <div class="product-specs">
+          <div class="pkg-options">
+            <div class="pkg-opt selected" data-pkg="120g方罐" data-price="220" onclick="selectPkg(this)">
+              <div class="pkg-opt-type">120g 方罐</div>
+              <div class="pkg-opt-price">NT$ 220</div>
+            </div>
+            <div class="pkg-opt" data-pkg="130g袋裝" data-price="320" onclick="selectPkg(this)">
+              <div class="pkg-opt-type">130g 袋裝</div>
+              <div class="pkg-opt-price">NT$ 320</div>
+            </div>
+          </div>
+          <button class="btn-add-cart" onclick="addToCart('黃豆芒果','🥭',this)">加入購物車</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 抹茶草莓 -->
+    <div class="product-card">
+      <div class="product-thumb" style="background: linear-gradient(135deg, #E8F5E9, #F8BBD0);">
+        <img src="image/product-抹茶草莓.jpg"
+             alt="MAMASASA 抹茶草莓 福哇餅"
+             loading="lazy"
+             onerror="this.style.display='none'">
+        <span class="thumb-emoji">🍵</span>
+      </div>
+      <div class="product-body">
+        <span class="product-badge badge-green">靜岡抹茶</span>
+        <div class="product-name">抹茶草莓</div>
+        <div class="product-tagline">靜岡抹茶 × 整顆草莓乾</div>
+        <div class="product-desc">
+          靜岡抹茶調色，微苦底搭配整顆草莓乾。
+          紅豆薏仁粉為基底，粉感更細膩，口感更鬆軟。
+          酸甜平衡，適合喜歡日式風味的你。
+        </div>
+        <div class="product-specs">
+          <div class="pkg-options">
+            <div class="pkg-opt selected" data-pkg="120g方罐" data-price="240" onclick="selectPkg(this)">
+              <div class="pkg-opt-type">120g 方罐</div>
+              <div class="pkg-opt-price">NT$ 240</div>
+            </div>
+            <div class="pkg-opt" data-pkg="130g袋裝" data-price="340" onclick="selectPkg(this)">
+              <div class="pkg-opt-type">130g 袋裝</div>
+              <div class="pkg-opt-price">NT$ 340</div>
+            </div>
+          </div>
+          <button class="btn-add-cart" onclick="addToCart('抹茶草莓','🍵',this)">加入購物車</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 燕麥無花果 -->
+    <div class="product-card">
+      <div class="product-thumb" style="background: linear-gradient(135deg, #F5F0E8, #E8E0D0);">
+        <img src="image/product-燕麥無花果.jpg"
+             alt="MAMASASA 燕麥無花果 福哇餅"
+             loading="lazy"
+             onerror="this.style.display='none'">
+        <span class="thumb-emoji">🌾</span>
+      </div>
+      <div class="product-body">
+        <span class="product-badge badge-gold">低甜度</span>
+        <div class="product-name">燕麥無花果</div>
+        <div class="product-tagline">純粹穀物香 × 無花果乾</div>
+        <div class="product-desc">
+          最接近「早餐版甜點」的一款。
+          燕麥粉的穀物香氣為主體，無花果乾豐富層次嚼感。
+          甜度最低，適合不嗜甜、喜歡底蘊風味的人。
+        </div>
+        <div class="product-specs">
+          <div class="pkg-options">
+            <div class="pkg-opt selected" data-pkg="120g方罐" data-price="220" onclick="selectPkg(this)">
+              <div class="pkg-opt-type">120g 方罐</div>
+              <div class="pkg-opt-price">NT$ 220</div>
+            </div>
+            <div class="pkg-opt" data-pkg="130g袋裝" data-price="320" onclick="selectPkg(this)">
+              <div class="pkg-opt-type">130g 袋裝</div>
+              <div class="pkg-opt-price">NT$ 320</div>
+            </div>
+          </div>
+          <button class="btn-add-cart" onclick="addToCart('燕麥無花果','🌾',this)">加入購物車</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 松露椒鹽堅果 -->
+    <div class="product-card">
+      <div class="product-thumb" style="background: linear-gradient(135deg, #F3E5F5, #EDE7F6);">
+        <img src="image/product-松露椒鹽堅果.jpg"
+             alt="MAMASASA 松露椒鹽堅果 福哇餅"
+             loading="lazy"
+             onerror="this.style.display='none'">
+        <span class="thumb-emoji">🍄</span>
+      </div>
+      <div class="product-body">
+        <span class="product-badge badge-new">New</span>
+        <div class="product-name">松露椒鹽堅果</div>
+        <div class="product-tagline">黑松露風味鹽 × 綜合堅果</div>
+        <div class="product-desc">
+          品牌最大膽的新口味。黑松露風味海鹽與綜合堅果，
+          打破雪Q餅「只能甜」的慣例。
+          吃完第一口你可能會愣住，
+          第二口就開始停不下來。話題度最高。
+        </div>
+        <div class="product-specs">
+          <div class="pkg-options">
+            <div class="pkg-opt selected" data-pkg="120g方罐" data-price="240" onclick="selectPkg(this)">
+              <div class="pkg-opt-type">120g 方罐</div>
+              <div class="pkg-opt-price">NT$ 240</div>
+            </div>
+            <div class="pkg-opt" data-pkg="130g袋裝" data-price="360" onclick="selectPkg(this)">
+              <div class="pkg-opt-type">130g 袋裝</div>
+              <div class="pkg-opt-price">NT$ 360</div>
+            </div>
+          </div>
+          <button class="btn-add-cart" onclick="addToCart('松露椒鹽堅果','🍄',this)">加入購物車</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+    <!-- 綜合口味 -->
+    <div class="product-card">
+      <div class="product-thumb" style="background: linear-gradient(135deg, #FFF3E0, #E8F5E9, #EDE7F6, #F8BBD0);">
+        <img src="image/product-綜合.jpg"
+             alt="MAMASASA 綜合口味 福哇餅"
+             loading="lazy"
+             onerror="this.style.display='none'">
+        <span class="thumb-emoji">🌈</span>
+      </div>
+      <div class="product-body">
+        <span class="product-badge badge-gold">任選搭配</span>
+        <div class="product-name">綜合口味</div>
+        <div class="product-tagline">四款口味 × 自由混搭</div>
+        <div class="product-desc">
+          選不了口味？全都要也可以。<br>
+          四款口味自由搭配，同一包裝規格混入不同口味。
+          適合第一次嘗試、或想送禮給口味各異的朋友。
+        </div>
+        <div class="product-specs">
+          <div class="pkg-options">
+            <div class="pkg-opt selected" data-pkg="120g方罐" data-price="220" onclick="selectPkg(this)">
+              <div class="pkg-opt-type">120g 方罐</div>
+              <div class="pkg-opt-price">NT$ 220</div>
+            </div>
+            <div class="pkg-opt" data-pkg="130g袋裝" data-price="320" onclick="selectPkg(this)">
+              <div class="pkg-opt-type">130g 袋裝</div>
+              <div class="pkg-opt-price">NT$ 320</div>
+            </div>
+          </div>
+          <button class="btn-add-cart" onclick="addToCart('綜合口味','🌈',this)">加入購物車</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 禮盒 & 企業採購說明（分開兩欄）-->
+  <div style="margin-top:2rem;display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+    <div style="padding:24px 28px;background:var(--warm-white);border:0.5px solid var(--border);border-left:3px solid var(--accent);">
+      <p style="font-size:13.5px;color:var(--ink);font-weight:500;margin-bottom:8px;">🎁 節慶禮盒</p>
+      <p style="font-size:13px;color:var(--ink-light);line-height:1.9;">
+        多種口味混搭組合、禮盒包裝、客製化賀卡均可洽談。<br>
+        節慶禮盒請提前 <strong>14 天</strong>預訂。<br>
+        請聯繫 Line <strong>@nub7466z</strong> 討論細節。
+      </p>
+    </div>
+    <div style="padding:24px 28px;background:var(--warm-white);border:0.5px solid var(--border);border-left:3px solid var(--green);">
+      <p style="font-size:13.5px;color:var(--ink);font-weight:500;margin-bottom:8px;">🏢 企業採購</p>
+      <p style="font-size:13px;color:var(--ink-light);line-height:1.9;">
+        <strong>10盒以上享九折，20盒以上享八五折。</strong><br>
+        客製化包裝、公司 LOGO 卡片均可安排。<br>
+        請在訂單備注欄說明，或直接聯繫 Line。
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ INGREDIENTS ══ -->
+<section id="ingredients">
+  <p class="section-label">What's Inside</p>
+  <h2 class="section-title">我們的成分，<br>沒什麼好隱瞞的</h2>
+  <p class="section-body">
+    市售雪Q餅 100% 使用餅乾碎。我們的基底不一樣——
+    三種穀物粉取代部分精緻餅乾，增加膳食纖維，
+    降低精緻澱粉比例。
+  </p>
+
+  <div class="ingredients-grid">
+    <div class="ingredient-item">
+      <span class="ingredient-icon">🌾</span>
+      <div class="ingredient-name">燕麥粉</div>
+      <div class="ingredient-desc">增加膳食纖維<br>穀物香氣的基底</div>
+    </div>
+    <div class="ingredient-item">
+      <span class="ingredient-icon">🌻</span>
+      <div class="ingredient-name">黃豆粉</div>
+      <div class="ingredient-desc">古法炒製<br>豆香不搶戲</div>
+    </div>
+    <div class="ingredient-item">
+      <span class="ingredient-icon">🍵</span>
+      <div class="ingredient-name">紅豆薏仁粉</div>
+      <div class="ingredient-desc">增加粉感層次<br>口感更鬆軟細膩</div>
+    </div>
+    <div class="ingredient-item">
+      <span class="ingredient-icon">🥭</span>
+      <div class="ingredient-name">整片厚切果乾</div>
+      <div class="ingredient-desc">非碎片<br>每口真實果感</div>
+    </div>
+    <div class="ingredient-item">
+      <span class="ingredient-icon">☁️</span>
+      <div class="ingredient-name">手工熬製棉花糖</div>
+      <div class="ingredient-desc">控溫製作<br>蓬鬆不黏牙</div>
+    </div>
+    <div class="ingredient-item">
+      <span class="ingredient-icon">🚫</span>
+      <div class="ingredient-name">無人工色素</div>
+      <div class="ingredient-desc">天然原料呈色<br>非人工調色</div>
+    </div>
+  </div>
+
+  <div class="ingredient-compare">
+    <div class="compare-title">— MAMASASA 福哇餅 vs. 市售一般雪Q餅 —</div>
+    <div class="compare-row">
+      <span class="compare-us">燕麥粉 + 黃豆粉 + 薏仁粉基底</span>
+      <span class="compare-vs">基底</span>
+      <span class="compare-them">100% 精緻餅乾碎</span>
+    </div>
+    <div class="compare-row">
+      <span class="compare-us">整片厚切（60g/份）</span>
+      <span class="compare-vs">果乾</span>
+      <span class="compare-them">碎片或少量添加</span>
+    </div>
+    <div class="compare-row">
+      <span class="compare-us">手工熬製，每批限量</span>
+      <span class="compare-vs">製作方式</span>
+      <span class="compare-them">批量機器製作</span>
+    </div>
+    <div class="compare-row">
+      <span class="compare-us">4款，含鹹甜創新口味</span>
+      <span class="compare-vs">口味</span>
+      <span class="compare-them">主要為蔓越莓/草莓</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ORDER FLOW ══ -->
+<section id="order">
+  <p class="section-label">How to Order</p>
+  <h2 class="section-title">三步驟，<br>就能吃到</h2>
+
+  <div class="order-steps">
+    <div class="order-step">
+      <span class="step-num">01</span>
+      <div class="step-title">選購口味</div>
+      <div class="step-body">
+        在商品區選擇喜歡的口味與包裝規格，
+        點「加入購物車」。可同時選購多款口味混搭。
+      </div>
+    </div>
+    <div class="order-step">
+      <span class="step-num">02</span>
+      <div class="step-title">填寫資料送出</div>
+      <div class="step-body">
+        點右上角購物車圖示，確認品項後填寫姓名、
+        Email 與取貨方式，送出訂單。
+        系統自動寄確認信，內含付款帳號。
+      </div>
+    </div>
+    <div class="order-step">
+      <span class="step-num">03</span>
+      <div class="step-title">付款・等待出貨</div>
+      <div class="step-body">
+        完成轉帳後截圖傳至 Line @nub7466z 告知後五碼。
+        手工製作需 <strong>5-7 個工作天</strong>，
+        出貨當天 Line / Email 通知。
+      </div>
+    </div>
+  </div>
+
+  <div class="order-note">
+    <strong>付款方式：</strong>銀行轉帳。訂單確認後，付款帳號將隨確認信寄至您的 Email。<br>
+    如有任何問題，歡迎透過 Instagram <strong>@realmamasasa</strong> 或 Line 直接聯繫。
+  </div>
+
+  <button onclick="openCart()" class="btn-order-big">
+    立即選購 →
+  </button>
+</section>
+
+<!-- ══ SHIPPING ══ -->
+<section id="shipping">
+  <p class="section-label">Shipping &amp; Pickup</p>
+  <h2 class="section-title">取貨方式</h2>
+  <div class="shipping-grid">
+    <div class="shipping-item">
+      <span class="shipping-icon">🚚</span>
+      <div>
+        <div class="shipping-title">宅配到府</div>
+        <div class="shipping-desc">運費依重量計算，確認訂單時告知運費金額。全台灣均可配送。</div>
+      </div>
+    </div>
+    <div class="shipping-item">
+      <span class="shipping-icon">🏪</span>
+      <div>
+        <div class="shipping-title">7-11 超商取貨</div>
+        <div class="shipping-desc">請在備注欄填入門市名稱及店號，抵達後由超商簡訊通知。</div>
+      </div>
+    </div>
+    <div class="shipping-item">
+      <span class="shipping-icon">🏬</span>
+      <div>
+        <div class="shipping-title">全家超商取貨</div>
+        <div class="shipping-desc">請在備注欄填入門市名稱及店號，抵達後由超商簡訊通知。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FAQ ══ -->
+<section id="faq">
+  <p class="section-label">FAQ</p>
+  <h2 class="section-title">常見問題</h2>
+  <div class="faq-list">
+
+    <details class="faq-item">
+      <summary class="faq-q">
+        保存期限是多久？要怎麼保存？
+        <span class="faq-icon">+</span>
+      </summary>
+      <div class="faq-a">
+        密封包裝下，常溫（建議陰涼乾燥處）可保存 14 天，冷藏可延長至 21 天。
+        開封後建議 5 天內食用完畢，並避免受潮（棉花糖遇潮濕會變黏）。
+        請勿冷凍，低溫會改變棉花糖口感。
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-q">
+        可以客製化口味或指定禮盒包裝嗎？
+        <span class="faq-icon">+</span>
+      </summary>
+      <div class="faq-a">
+        可以。多種口味混搭禮盒、客製化卡片、特殊包裝需求，請在訂單備注欄說明，
+        或直接聯繫 Line @nub7466z 討論細節。客製化訂單建議提前 <strong>21 天</strong>預訂。
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-q">
+        對過敏原有什麼需要注意？
+        <span class="faq-icon">+</span>
+      </summary>
+      <div class="faq-a">
+        產品含有：<strong>麩質（燕麥粉）、大豆（黃豆粉）、堅果類（松露椒鹽堅果口味）</strong>。
+        製作環境中可能接觸到乳製品與蛋製品。
+        如有嚴重過敏疑慮，請在備注欄告知，我們會盡量分開製作。
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-q">
+        可以訂幾個？有最低訂購量嗎？
+        <span class="faq-icon">+</span>
+      </summary>
+      <div class="faq-a">
+        最低訂購量為 1 個，無上限。
+        10 盒以上享九折，20 盒以上享八五折（適用於企業採購或節慶送禮）。
+        大量訂單（30 盒以上）請提前聯繫確認製作時程。
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-q">
+        拿到手後口感不對怎麼辦？
+        <span class="faq-icon">+</span>
+      </summary>
+      <div class="faq-a">
+        我們對每批產品品質負責。如收到後發現產品有缺陷（非人為損壞），
+        請在收到後 24 小時內附上照片聯繫我們，我們將優先安排補發或退款。
+      </div>
+    </details>
+
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand">MAMASASA</div>
+      <div class="footer-tagline">福哇餅 — 穀物棉花糖餅，台北手作</div>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/realmamasasa" target="_blank" class="social-link">
+          📸 Instagram
+        </a>
+        <a href="https://line.me/R/ti/p/@nub7466z" target="_blank" class="social-link">
+          💬 Line 官方
+        </a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">產品</div>
+      <div class="footer-links">
+        <a href="#products">黃豆芒果</a>
+        <a href="#products">抹茶草莓</a>
+        <a href="#products">燕麥無花果</a>
+        <a href="#products">松露椒鹽堅果</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">服務</div>
+      <div class="footer-links">
+        <a href="#order">立即訂購</a>
+        <a href="#shipping">取貨方式</a>
+        <a href="#faq">常見問題</a>
+        <a href="https://line.me/R/ti/p/@nub7466z" target="_blank">聯繫我們</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 MAMASASA 甜點設計所 · 台北</span>
+    <span>手作限量，預約制出貨</span>
+  </div>
+</footer>
+
+<!-- ══ 購物車遮罩 ══ -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+
+<!-- ══ 購物車抽屜 ══ -->
+<div class="cart-drawer" id="cartDrawer">
+
+  <div class="cart-drawer-hd">
+    <span class="cart-drawer-title">購物車</span>
+    <button class="cart-close" onclick="closeCart()">×</button>
+  </div>
+
+  <!-- 購物車清單 -->
+  <div class="cart-view" id="cartView">
+    <div class="cart-body" id="cartBody">
+      <div class="cart-empty">
+        <span class="cart-empty-icon">🛒</span>
+        <p>購物車是空的</p>
+        <p style="font-size:12px;margin-top:6px;color:var(--ink-muted)">選一款口味加入吧</p>
+      </div>
+    </div>
+    <div id="cartDiscountInfo" class="cart-discount-info"></div>
+    <div class="cart-ft">
+      <div class="cart-total-row">
+        <span class="cart-total-lbl">合計</span>
+        <div>
+          <span id="cartOrigPrice" class="cart-total-orig" style="display:none"></span>
+          <span id="cartTotal" class="cart-total-amt">NT$ 0</span>
+        </div>
+      </div>
+      <button class="btn-checkout" onclick="showCheckout()">前往結帳 →</button>
+    </div>
+  </div>
+
+  <!-- 結帳表單 -->
+  <div class="checkout-view" id="checkoutView" style="display:none">
+    <p class="co-title">填寫訂購資訊</p>
+    <div class="co-order-summary" id="coSummary">—</div>
+    <form onsubmit="submitOrder(event)">
+      <div class="co-field">
+        <label>姓名 *</label>
+        <input id="coName" type="text" placeholder="王小明" required>
+      </div>
+      <div class="co-field">
+        <label>聯繫電話 *</label>
+        <input id="coPhone" type="tel" placeholder="0912-345-678" required>
+      </div>
+      <div class="co-field">
+        <label>Email *</label>
+        <input id="coEmail" type="email" placeholder="你的 Email（確認信會寄到這裡）" required>
+      </div>
+      <div class="co-field">
+        <label>取貨方式 *</label>
+        <select id="coPickup" required>
+          <option value="">— 請選擇 —</option>
+          <option value="宅配到府">宅配到府（運費另計，滿 NT$2,000 免運）</option>
+          <option value="超商取貨">超商取貨（7-11 / 全家，運費 NT$60）</option>
+          <option value="企業配送">企業配送（20盒以上，另行報價）</option>
+        </select>
+      </div>
+      <div class="co-field">
+        <label>收件地址 / 指定超商門市</label>
+        <input id="coAddress" type="text" placeholder="台北市...">
+      </div>
+      <div class="co-field">
+        <label>備注</label>
+        <textarea id="coNote" placeholder="口味偏好、禮盒需求、節慶賀詞…"></textarea>
+      </div>
+      <button type="submit" class="btn-submit-order">送出訂單</button>
+      <button type="button" class="btn-back" onclick="showCartView()">← 返回購物車</button>
+    </form>
+  </div>
+
+</div>
+
+<script>
+// ── 商品資料 ──
+const PRODUCTS = {
+  '黃豆芒果_120g方罐':     220,
+  '黃豆芒果_130g袋裝':     320,
+  '抹茶草莓_120g方罐':     240,
+  '抹茶草莓_130g袋裝':     340,
+  '燕麥無花果_120g方罐':   220,
+  '燕麥無花果_130g袋裝':   320,
+  '松露椒鹽堅果_120g方罐': 240,
+  '松露椒鹽堅果_130g袋裝': 360,
+  '綜合口味_120g方罐':     220,
+  '綜合口味_130g袋裝':     320,
+};
+
+let cart = {};
+
+// ── 選擇包裝規格 ──
+function selectPkg(el) {
+  el.closest('.pkg-options').querySelectorAll('.pkg-opt')
+    .forEach(s => s.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+// ── 加入購物車 ──
+function addToCart(flavor, emoji, btn) {
+  const selected = btn.closest('.product-specs').querySelector('.pkg-opt.selected');
+  const pkg   = selected.dataset.pkg;
+  const price = parseInt(selected.dataset.price);
+  const key   = flavor + '_' + pkg;
+
+  cart[key] ? cart[key].qty++ : (cart[key] = { flavor, pkg, price, qty: 1, emoji });
+
+  btn.textContent = '✓ 已加入';
+  btn.classList.add('added');
+  setTimeout(() => { btn.textContent = '加入購物車'; btn.classList.remove('added'); }, 1300);
+
+  renderCart();
+  openCart();
+}
+
+// ── 更新數量 ──
+function updateQty(key, d) {
+  if (!cart[key]) return;
+  cart[key].qty += d;
+  if (cart[key].qty <= 0) delete cart[key];
+  renderCart();
+}
+
+// ── 移除品項 ──
+function removeItem(key) { delete cart[key]; renderCart(); }
+
+// ── 計算折扣 ──
+function getDiscount(qty) {
+  if (qty >= 20) return { rate: 0.85, label: '🎉 批量優惠 20盒以上 ── 八五折' };
+  if (qty >= 10) return { rate: 0.9,  label: '👍 批量優惠 10盒以上 ── 九折' };
+  return { rate: 1, label: '' };
+}
+
+// ── 渲染 ──
+function renderCart() {
+  const entries    = Object.entries(cart);
+  const totalQty   = entries.reduce((s,[,v])=>s+v.qty,0);
+  const totalAmt   = entries.reduce((s,[,v])=>s+v.price*v.qty,0);
+  const { rate, label } = getDiscount(totalQty);
+  const finalAmt   = Math.round(totalAmt * rate);
+
+  // 數字徽章
+  const badge = document.getElementById('cartBadge');
+  totalQty > 0 ? (badge.textContent = totalQty > 99 ? '99+' : totalQty, badge.classList.add('show'))
+               : badge.classList.remove('show');
+
+  // 清單
+  const body = document.getElementById('cartBody');
+  body.innerHTML = entries.length === 0
+    ? `<div class="cart-empty"><span class="cart-empty-icon">🛒</span><p>購物車是空的</p><p style="font-size:12px;margin-top:6px;color:var(--ink-muted)">選一款口味加入吧</p></div>`
+    : entries.map(([key,item])=>`
+      <div class="cart-item">
+        <span class="cart-item-emoji">${item.emoji}</span>
+        <div class="cart-item-info">
+          <div class="cart-item-name">${item.flavor}</div>
+          <div class="cart-item-pkg">${item.pkg}</div>
+          <div class="cart-item-ctrl">
+            <button class="qty-btn" onclick="updateQty('${key}',-1)">−</button>
+            <span class="qty-num">${item.qty}</span>
+            <button class="qty-btn" onclick="updateQty('${key}',1)">＋</button>
+          </div>
+        </div>
+        <div class="cart-item-right">
+          <span class="cart-item-price">NT$${(item.price*item.qty).toLocaleString()}</span>
+          <button class="cart-item-remove" onclick="removeItem('${key}')">×</button>
+        </div>
+      </div>`).join('');
+
+  // 折扣提示
+  const disc = document.getElementById('cartDiscountInfo');
+  disc.textContent = label;
+  label ? disc.classList.add('show') : disc.classList.remove('show');
+
+  // 金額
+  const origEl  = document.getElementById('cartOrigPrice');
+  const totalEl = document.getElementById('cartTotal');
+  if (rate < 1) {
+    origEl.style.display = 'block';
+    origEl.textContent   = 'NT$' + totalAmt.toLocaleString();
+    totalEl.textContent  = 'NT$' + finalAmt.toLocaleString();
+  } else {
+    origEl.style.display = 'none';
+    totalEl.textContent  = 'NT$' + (totalAmt > 0 ? totalAmt.toLocaleString() : '0');
+  }
+
+  // 存起來給結帳用
+  window._order = { entries, totalQty, totalAmt, finalAmt, rate };
+}
+
+// ── 開關抽屜 ──
+function openCart()  {
+  document.getElementById('cartDrawer').classList.add('open');
+  document.getElementById('cartOverlay').classList.add('open');
+  showCartView();
+}
+function closeCart() {
+  document.getElementById('cartDrawer').classList.remove('open');
+  document.getElementById('cartOverlay').classList.remove('open');
+}
+function showCartView() {
+  document.getElementById('cartView').style.display = 'flex';
+  document.getElementById('checkoutView').style.display = 'none';
+}
+function showCheckout() {
+  if (!window._order || window._order.entries.length === 0) return;
+  const { entries, finalAmt, rate } = window._order;
+  const lines = entries.map(([,v])=>`${v.flavor} ${v.pkg} ×${v.qty}　NT$${(v.price*v.qty).toLocaleString()}`).join('\n');
+  const disc  = rate < 1 ? `（${(rate*10).toFixed(1)}折優惠已套用）` : '';
+  document.getElementById('coSummary').innerText = lines + '\n\n合計 NT$' + finalAmt.toLocaleString() + ' ' + disc;
+  document.getElementById('cartView').style.display = 'none';
+  document.getElementById('checkoutView').style.display = 'flex';
+}
+
+// ── Apps Script Web App 網址（發布後填入）──
+const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyUqtgOkkK_9WhdbF80EwOfYx2KW8NK7zZCM1clVaz2HdyUmLDxCkp1lOHVjllk1p9E/exec';
+
+// ── 送出訂單 ──
+async function submitOrder(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.btn-submit-order');
+  btn.textContent = '送出中…';
+  btn.disabled = true;
+
+  const name    = document.getElementById('coName').value;
+  const payload = {
+    name,
+    phone:   document.getElementById('coPhone').value,
+    email:   document.getElementById('coEmail').value,
+    pickup:  document.getElementById('coPickup').value,
+    address: document.getElementById('coAddress').value,
+    note:    document.getElementById('coNote').value,
+    items:   Object.values(cart).map(i => ({
+      flavor: i.flavor, pkg: i.pkg, price: i.price, qty: i.qty
+    }))
+  };
+
+  // 尚未填入 Web App 網址時，直接顯示成功頁（測試模式）
+  if (WEB_APP_URL === 'YOUR_WEB_APP_URL_HERE') {
+    showSuccess(name);
+    return;
+  }
+
+  try {
+    await fetch(WEB_APP_URL, {
+      method: 'POST',
+      mode:   'no-cors',      // Google Apps Script 不需要 CORS 預檢
+      body:   JSON.stringify(payload)
+    });
+    showSuccess(name);
+  } catch (err) {
+    btn.textContent = '送出訂單';
+    btn.disabled = false;
+    alert('送出失敗，請稍後再試或聯繫 Line @nub7466z');
+  }
+}
+
+function showSuccess(name) {
+  const cv = document.getElementById('checkoutView');
+  cv.innerHTML = `
+    <div style="padding:60px 24px;text-align:center;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+      <div style="font-size:52px;margin-bottom:20px;">🎉</div>
+      <h3 style="font-family:'Noto Serif TC',serif;font-weight:400;font-size:19px;margin-bottom:14px;">
+        感謝訂購，${name}！
+      </h3>
+      <p style="font-size:13px;color:var(--ink-light);line-height:2.1;max-width:280px;">
+        我們會在 <strong>24 小時內</strong>確認並寄出付款資訊。<br>
+        訂單確認信將寄至你的 Email。
+      </p>
+      <button onclick="closeCart();cart={};renderCart();"
+        style="margin-top:32px;padding:14px 40px;background:var(--ink);color:var(--cream);border:none;cursor:pointer;border-radius:2px;font-size:12px;letter-spacing:0.14em;">
+        繼續逛逛
+      </button>
+    </div>`;
+}
+
+renderCart();
+</script>
+
+</body>
+</html>
