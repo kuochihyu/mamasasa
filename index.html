@@ -622,6 +622,7 @@
     <a href="#products">產品</a>
     <a href="#ingredients">成分</a>
     <a href="#order">訂購</a>
+    <a href="#products" class="nav-order">立即訂購 →</a>
     <button class="cart-icon-btn" onclick="openCart()" aria-label="購物車">
       <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
         <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
@@ -1067,9 +1068,7 @@
     如有任何問題，歡迎透過 Instagram <strong>@realmamasasa</strong> 或 Line 直接聯繫。
   </div>
 
-  <button onclick="openCart()" class="btn-order-big">
-    立即選購 →
-  </button>
+  <a href="#products" class="btn-order-big">立即選購 →</a>
 </section>
 
 <!-- ══ SHIPPING ══ -->
@@ -1243,41 +1242,49 @@
 
   <!-- 結帳表單 -->
   <div class="checkout-view" id="checkoutView" style="display:none">
-    <p class="co-title">填寫訂購資訊</p>
-    <div class="co-order-summary" id="coSummary">—</div>
-    <form onsubmit="submitOrder(event)">
-      <div class="co-field">
-        <label>姓名 *</label>
-        <input id="coName" type="text" placeholder="王小明" required>
-      </div>
-      <div class="co-field">
-        <label>聯繫電話 *</label>
-        <input id="coPhone" type="tel" placeholder="0912-345-678" required>
-      </div>
-      <div class="co-field">
-        <label>Email *</label>
-        <input id="coEmail" type="email" placeholder="你的 Email（確認信會寄到這裡）" required>
-      </div>
-      <div class="co-field">
-        <label>取貨方式 *</label>
-        <select id="coPickup" required>
-          <option value="">— 請選擇 —</option>
-          <option value="宅配到府">宅配到府（運費另計，滿 NT$2,000 免運）</option>
-          <option value="超商取貨">超商取貨（7-11 / 全家，運費 NT$60）</option>
-          <option value="企業配送">企業配送（20盒以上，另行報價）</option>
-        </select>
-      </div>
-      <div class="co-field">
-        <label>收件地址 / 指定超商門市</label>
-        <input id="coAddress" type="text" placeholder="台北市...">
-      </div>
-      <div class="co-field">
-        <label>備注</label>
-        <textarea id="coNote" placeholder="口味偏好、禮盒需求、節慶賀詞…"></textarea>
-      </div>
-      <button type="submit" class="btn-submit-order">送出訂單</button>
-      <button type="button" class="btn-back" onclick="showCartView()">← 返回購物車</button>
-    </form>
+
+    <!-- 表單（成功後隱藏，不刪除，下次還能用）-->
+    <div id="checkoutFormWrap">
+      <p class="co-title">填寫訂購資訊</p>
+      <div class="co-order-summary" id="coSummary">—</div>
+      <form id="coForm" onsubmit="submitOrder(event)">
+        <div class="co-field">
+          <label>姓名 *</label>
+          <input id="coName" type="text" placeholder="王小明" required>
+        </div>
+        <div class="co-field">
+          <label>聯繫電話 *</label>
+          <input id="coPhone" type="tel" placeholder="0912-345-678" required>
+        </div>
+        <div class="co-field">
+          <label>Email *</label>
+          <input id="coEmail" type="email" placeholder="你的 Email（確認信會寄到這裡）" required>
+        </div>
+        <div class="co-field">
+          <label>取貨方式 *</label>
+          <select id="coPickup" required>
+            <option value="">— 請選擇 —</option>
+            <option value="宅配到府">宅配到府（運費另計，滿 NT$2,000 免運）</option>
+            <option value="超商取貨">超商取貨（7-11 / 全家，運費 NT$60）</option>
+            <option value="企業配送">企業配送（20盒以上，另行報價）</option>
+          </select>
+        </div>
+        <div class="co-field">
+          <label>收件地址 / 指定超商門市</label>
+          <input id="coAddress" type="text" placeholder="台北市...">
+        </div>
+        <div class="co-field">
+          <label>備注</label>
+          <textarea id="coNote" placeholder="口味偏好、禮盒需求、節慶賀詞…"></textarea>
+        </div>
+        <button type="submit" id="coSubmitBtn" class="btn-submit-order">送出訂單</button>
+        <button type="button" class="btn-back" onclick="showCartView()">← 返回購物車</button>
+      </form>
+    </div>
+
+    <!-- 成功畫面（平時隱藏）-->
+    <div id="checkoutSuccess" style="display:none;padding:60px 24px;text-align:center;flex-direction:column;align-items:center;justify-content:center;flex:1;"></div>
+
   </div>
 
 </div>
@@ -1406,6 +1413,18 @@ function openCart()  {
 function closeCart() {
   document.getElementById('cartDrawer').classList.remove('open');
   document.getElementById('cartOverlay').classList.remove('open');
+  // 重置結帳畫面，讓下次能再用
+  setTimeout(() => {
+    const fw = document.getElementById('checkoutFormWrap');
+    const sc = document.getElementById('checkoutSuccess');
+    if (fw) fw.style.display = '';
+    if (sc) { sc.style.display = 'none'; sc.innerHTML = ''; }
+    const form = document.getElementById('coForm');
+    if (form) form.reset();
+    const btn = document.getElementById('coSubmitBtn');
+    if (btn) { btn.textContent = '送出訂單'; btn.disabled = false; }
+    cart = {}; renderCart();
+  }, 350); // 等抽屜關閉動畫結束再重置
 }
 function showCartView() {
   document.getElementById('cartView').style.display = 'flex';
@@ -1465,22 +1484,23 @@ async function submitOrder(e) {
 }
 
 function showSuccess(name) {
-  const cv = document.getElementById('checkoutView');
-  cv.innerHTML = `
-    <div style="padding:60px 24px;text-align:center;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;">
-      <div style="font-size:52px;margin-bottom:20px;">🎉</div>
-      <h3 style="font-family:'Noto Serif TC',serif;font-weight:400;font-size:19px;margin-bottom:14px;">
-        感謝訂購，${name}！
-      </h3>
-      <p style="font-size:13px;color:var(--ink-light);line-height:2.1;max-width:280px;">
-        我們會在 <strong>24 小時內</strong>確認並寄出付款資訊。<br>
-        訂單確認信將寄至你的 Email。
-      </p>
-      <button onclick="closeCart();cart={};renderCart();"
-        style="margin-top:32px;padding:14px 40px;background:var(--ink);color:var(--cream);border:none;cursor:pointer;border-radius:2px;font-size:12px;letter-spacing:0.14em;">
-        繼續逛逛
-      </button>
-    </div>`;
+  document.getElementById('checkoutFormWrap').style.display = 'none';
+  const s = document.getElementById('checkoutSuccess');
+  s.style.display = 'flex';
+  s.innerHTML = `
+    <div style="font-size:52px;margin-bottom:20px;">🎉</div>
+    <h3 style="font-family:'Noto Serif TC',serif;font-weight:400;font-size:19px;margin-bottom:14px;">
+      感謝訂購，${name}！
+    </h3>
+    <p style="font-size:13px;color:var(--ink-light);line-height:2.1;max-width:280px;">
+      訂單確認信已寄至你的 Email，<br>
+      內含付款帳號。<br>
+      請於 <strong>24 小時內</strong>完成轉帳。
+    </p>
+    <button onclick="closeCart();"
+      style="margin-top:32px;padding:14px 40px;background:var(--ink);color:var(--cream);border:none;cursor:pointer;border-radius:2px;font-size:12px;letter-spacing:0.14em;">
+      繼續逛逛
+    </button>`;
 }
 
 renderCart();
